@@ -1,0 +1,13 @@
+The boy saw the dog.
+A cat walked in the park.
+The woman liked a telescope.
+The girl walked with the boy.
+The man walked on the dog.
+A telescope saw the girl.
+
+Cat saw the dog.                 #  Falta artículo
+The tree walked in the park.    #  \"tree\" no es un sustantivo permitido
+The boy eats the cat.           #  \"eats\" no es un verbo permitido
+The dog.                        #  Falta verbo
+The girl walked in park.        #  Falta artículo en \"in park\"
+The woman liked a telescope     #  Falta punto final
