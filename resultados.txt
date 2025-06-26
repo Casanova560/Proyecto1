@@ -1,0 +1,45 @@
+Oración 1: «The boy saw the dog.»
+  Léxico: OK
+  Sintáctico: OK
+
+Oración 2: «A cat walked in the park.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'in')
+
+Oración 3: «The woman liked a telescope.»
+  Léxico: OK
+  Sintáctico: OK
+
+Oración 4: «The girl walked with the boy.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'with')
+
+Oración 5: «The man walked on the dog.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'on')
+
+Oración 6: «A telescope saw the girl.»
+  Léxico: OK
+  Sintáctico: OK
+
+Oración 7: «Cat saw the dog.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba ART, encontrado ('N', 'cat')
+
+Oración 8: «The tree walked in the park.»
+  Léxico: ERROR → Carácter inesperado: 't'
+
+Oración 9: «The boy eats the cat.»
+  Léxico: ERROR → Carácter inesperado: 'e'
+
+Oración 10: «The dog.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba V, encontrado ('PERIOD', '.')
+
+Oración 11: «The girl walked in park.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'in')
+
+Oración 12: «The woman liked a telescope»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba PERIOD, encontrado EOF

@@ -4,8 +4,12 @@ from syntax_analyzer import analyze, ParseError
 
 def procesar(archivo_entrada, archivo_salida):
     resultados = []
-    with open(archivo_entrada, encoding='utf-8') as fin:
-        lineas = [l.rstrip() for l in fin if l.strip()]
+    try:
+        with open(archivo_entrada, encoding='utf-8') as fin:
+            lineas = [l.rstrip() for l in fin if l.strip()]
+    except IOError as e:
+        print(f"Error al leer '{archivo_entrada}': {e}")
+        sys.exit(1)
 
     for i, linea in enumerate(lineas, 1):
         resultados.append(f"Oración {i}: «{linea}»")
@@ -24,12 +28,16 @@ def procesar(archivo_entrada, archivo_salida):
             resultados.append(f"  Sintáctico: ERROR → {e}")
         resultados.append("")
 
-    with open(archivo_salida, 'w', encoding='utf-8') as fout:
-        fout.write("\n".join(resultados))
+    try:
+        with open(archivo_salida, 'w', encoding='utf-8') as fout:
+            fout.write("\n".join(resultados))
+    except IOError as e:
+        print(f"Error al escribir '{archivo_salida}': {e}")
+        sys.exit(1)
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print("Uso: python run_parser.py <in.txt> <out.txt>")
-    else:
-        procesar(sys.argv[1], sys.argv[2])
-        print("Procesamiento completado.")
+        print("Uso: python main.py <archivo_entrada> <archivo_salida>")
+        sys.exit(1)
+    procesar(sys.argv[1], sys.argv[2])
+
