@@ -1,45 +1,47 @@
-Oración 1: «The boy saw the dog.»
+Oración 1: «a cat see me.»
   Léxico: OK
   Sintáctico: OK
 
-Oración 2: «A cat walked in the park.»
-  Léxico: OK
-  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'in')
-
-Oración 3: «The woman liked a telescope.»
+Oración 2: «the rat like the mat.»
   Léxico: OK
   Sintáctico: OK
 
-Oración 4: «The girl walked with the boy.»
-  Léxico: OK
-  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'with')
-
-Oración 5: «The man walked on the dog.»
-  Léxico: OK
-  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'on')
-
-Oración 6: «A telescope saw the girl.»
+Oración 3: «like me.»
   Léxico: OK
   Sintáctico: OK
 
-Oración 7: «Cat saw the dog.»
+Oración 4: «the mat see a rat.»
   Léxico: OK
-  Sintáctico: ERROR → Se esperaba ART, encontrado ('N', 'cat')
+  Sintáctico: OK
 
-Oración 8: «The tree walked in the park.»
-  Léxico: ERROR → Carácter inesperado: 't'
-
-Oración 9: «The boy eats the cat.»
-  Léxico: ERROR → Carácter inesperado: 'e'
-
-Oración 10: «The dog.»
+Oración 5: «sees the rat.»
   Léxico: OK
-  Sintáctico: ERROR → Se esperaba V, encontrado ('PERIOD', '.')
+  Sintáctico: OK
 
-Oración 11: «The girl walked in park.»
+Oración 6: «a rat is a mat.»
   Léxico: OK
-  Sintáctico: ERROR → Se esperaba ART, encontrado ('PREP', 'in')
+  Sintáctico: OK
 
-Oración 12: «The woman liked a telescope»
+Oración 7: «cat see me.»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba VERB, encontrado ('NOUN', 'cat')
+
+Oración 8: «a cat see me»
   Léxico: OK
   Sintáctico: ERROR → Se esperaba PERIOD, encontrado EOF
+
+Oración 9: «the cat sees me.»
+  Léxico: OK
+  Sintáctico: OK
+
+Oración 10: «the rat sees me..»
+  Léxico: OK
+  Sintáctico: ERROR → Tokens sobrantes: [('PERIOD', '.')]
+
+Oración 11: «the rat sees me»
+  Léxico: OK
+  Sintáctico: ERROR → Se esperaba PERIOD, encontrado EOF
+
+Oración 12: «the rat sees the mat.»
+  Léxico: OK
+  Sintáctico: OK

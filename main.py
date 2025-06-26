@@ -2,25 +2,26 @@ import sys
 from scanner import scan, ScanError
 from syntax_analyzer import analyze, ParseError
 
-def procesar(archivo_entrada, archivo_salida):
+def procesar(entrada, salida):
     resultados = []
     try:
-        with open(archivo_entrada, encoding='utf-8') as fin:
-            lineas = [l.rstrip() for l in fin if l.strip()]
+        with open(entrada, encoding='utf-8') as f:
+            lines = [l.strip() for l in f if l.strip()]
     except IOError as e:
-        print(f"Error al leer '{archivo_entrada}': {e}")
+        print(f"Error al leer '{entrada}': {e}")
         sys.exit(1)
 
-    for i, linea in enumerate(lineas, 1):
-        resultados.append(f"Oración {i}: «{linea}»")
+    for i, line in enumerate(lines, 1):
+        resultados.append(f"Oración {i}: «{line}»")
+        # Léxico
         try:
-            tokens = scan(linea)
+            tokens = scan(line)
             resultados.append("  Léxico: OK")
         except ScanError as e:
             resultados.append(f"  Léxico: ERROR → {e}")
-            resultados.append("")
+            resultados.append("")  # línea en blanco
             continue
-
+        # Sintáctico
         try:
             analyze(tokens)
             resultados.append("  Sintáctico: OK")
@@ -29,10 +30,10 @@ def procesar(archivo_entrada, archivo_salida):
         resultados.append("")
 
     try:
-        with open(archivo_salida, 'w', encoding='utf-8') as fout:
-            fout.write("\n".join(resultados))
+        with open(salida, 'w', encoding='utf-8') as f:
+            f.write("\n".join(resultados))
     except IOError as e:
-        print(f"Error al escribir '{archivo_salida}': {e}")
+        print(f"Error al escribir '{salida}': {e}")
         sys.exit(1)
 
 if __name__ == '__main__':
@@ -40,4 +41,5 @@ if __name__ == '__main__':
         print("Uso: python main.py <archivo_entrada> <archivo_salida>")
         sys.exit(1)
     procesar(sys.argv[1], sys.argv[2])
+
 

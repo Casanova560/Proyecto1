@@ -4,27 +4,37 @@ class ParseError(Exception):
 def analyze(tokens):
     pos = 0
 
-    def expect(ttype):
+    def expect(ttype, val=None):
         nonlocal pos
-        if pos < len(tokens) and tokens[pos][0] == ttype:
+        if pos < len(tokens) and tokens[pos][0] == ttype and (val is None or tokens[pos][1] == val):
             pos += 1
         else:
-            actual = tokens[pos] if pos < len(tokens) else 'EOF'
-            raise ParseError(f"Se esperaba {ttype}, encontrado {actual}")
+            found = tokens[pos] if pos < len(tokens) else 'EOF'
+            exp = ttype + (f"('{val}')" if val else "")
+            raise ParseError(f"Se esperaba {exp}, encontrado {found}")
 
-    def np():
-        expect('ART')
-        expect('N')
+    def subject():
+        # <subject> ::= ε | a NOUN | the NOUN
+        if pos < len(tokens) and tokens[pos][0] == 'ART':
+            expect('ART')
+            expect('NOUN')
 
-    def vp():
-        expect('V')
-        np()
-        if pos < len(tokens) and tokens[pos][0] == 'PREP':
-            expect('PREP')
-            np()
+    def verb():
+        # <verb> ::= like | is | see | sees
+        expect('VERB')
 
-    np()
-    vp()
+    def obj():
+        # <object> ::= me | a NOUN | the NOUN
+        if pos < len(tokens) and tokens[pos][0] == 'ME':
+            expect('ME')
+        else:
+            expect('ART')
+            expect('NOUN')
+
+    # <sentence> ::= <subject> <verb> <object> PERIOD
+    subject()
+    verb()
+    obj()
     expect('PERIOD')
 
     if pos != len(tokens):
